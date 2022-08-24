@@ -2,9 +2,10 @@ package main
 
 import (
 	"Project/config"
-	"Project/controllers/login"
-	"Project/entities"
 	"Project/controllers/Profile"
+	"Project/controllers/login"
+	"Project/controllers/readAccount"
+	"Project/entities"
 	"fmt"
 )
 
@@ -45,6 +46,7 @@ func main() {
 		}
 	case 3:
 		{
+			readAccount.ReadAccount(db)
 		}
 	case 4:
 		{
