@@ -4,10 +4,12 @@ import (
 	"Project/config"
 	"Project/controllers/Profile"
 	"Project/controllers/ReadAccount"
+	"Project/controllers/deleteaccount"
 	"Project/controllers/login"
 	"Project/controllers/update"
 	"Project/entities"
 	"bufio"
+	//"database/sql"
 	"fmt"
 	"os"
 )
@@ -136,6 +138,7 @@ func main() {
 		}
 	case 5:
 		{
+			deleteaccount.DeleteAkun(db)
 		}
 	case 6:
 		{
