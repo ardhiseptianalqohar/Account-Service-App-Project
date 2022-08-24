@@ -2,6 +2,7 @@ package main
 
 import (
 	"Project/config"
+	profile "Project/controllers/Profile"
 	"Project/controllers/login"
 	"Project/controllers/update"
 	"Project/entities"
@@ -24,6 +25,7 @@ func main() {
 	switch pilihan {
 	case 1:
 		{
+			profile.AddAccount(db)
 		}
 	case 2:
 		{
