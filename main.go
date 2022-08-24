@@ -3,8 +3,11 @@ package main
 import (
 	"Project/config"
 	"Project/controllers/login"
+	"Project/controllers/update"
 	"Project/entities"
+	"bufio"
 	"fmt"
+	"os"
 )
 
 func main() {
@@ -46,6 +49,86 @@ func main() {
 		}
 	case 4:
 		{
+			fmt.Println("Bagian Yang Di Update\n1. Nama\n2. Address\n3. Nomor\n4. Password")
+			fmt.Print("Masukkan pilihan:")
+			var pilih int
+			fmt.Scanln(&pilih)
+
+			switch pilih {
+			case 1:
+				{
+					up := entities.Profile{}
+					fmt.Println("Masukkan Nama Terbaru Anda :")
+					in := bufio.NewReader(os.Stdin)
+					line, _ := in.ReadString('\n')
+					up.Name = line
+					// fmt.Scanln(&up.Name)
+					fmt.Println("Masukkan Nomor Anda :")
+					fmt.Scanln(&up.Nomor)
+
+					row, err := update.UpdateName(db, up)
+					if err != nil {
+						fmt.Println("Terjadi error", err)
+					} else if row == 0 {
+						fmt.Println("gagal update, row affected = 0")
+					} else {
+						fmt.Println("sukses update, row affected", row)
+					}
+				}
+			case 2:
+				{
+					up := entities.Profile{}
+					fmt.Println("Masukkan Alamat Terbaru Anda :")
+					fmt.Scanln(&up.Address)
+					fmt.Println("Masukkan Nomor Anda :")
+					fmt.Scanln(&up.Nomor)
+
+					row, err := update.UpdateAddress(db, up)
+					if err != nil {
+						fmt.Println("Terjadi error", err)
+					} else if row == 0 {
+						fmt.Println("gagal update, row affected = 0")
+					} else {
+						fmt.Println("sukses update, row affected", row)
+					}
+				}
+			case 3:
+				{
+					up := entities.Profile{}
+					fmt.Println("Masukkan Nomor Terbaru Anda :")
+					fmt.Scanln(&up.Nomor)
+					fmt.Println("Masukkan Nama Anda :")
+					in := bufio.NewReader(os.Stdin)
+					line, _ := in.ReadString('\n')
+					up.Name = line
+
+					row, err := update.UpdateNomor(db, up)
+					if err != nil {
+						fmt.Println("Terjadi error", err)
+					} else if row == 0 {
+						fmt.Println("gagal update, row affected = 0")
+					} else {
+						fmt.Println("sukses update, row affected", row)
+					}
+				}
+			case 4:
+				{
+					up := entities.Profile{}
+					fmt.Println("Masukkan Password Terbaru Anda :")
+					fmt.Scanln(&up.Password)
+					fmt.Println("Masukkan Nomor Anda :")
+					fmt.Scanln(&up.Nomor)
+
+					row, err := update.UpdatePassword(db, up)
+					if err != nil {
+						fmt.Println("Terjadi error", err)
+					} else if row == 0 {
+						fmt.Println("gagal update, row affected = 0")
+					} else {
+						fmt.Println("sukses update, row affected", row)
+					}
+				}
+			}
 		}
 	case 5:
 		{
