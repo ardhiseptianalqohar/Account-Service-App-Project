@@ -2,7 +2,7 @@ package main
 
 import (
 	"Project/config"
-	profile "Project/controllers/Profile"
+	"Project/controllers/Profile"
 	"Project/controllers/login"
 	"Project/controllers/update"
 	"Project/entities"
