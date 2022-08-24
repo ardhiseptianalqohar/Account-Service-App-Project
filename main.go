@@ -3,6 +3,7 @@ package main
 import (
 	"Project/config"
 	"Project/controllers/Profile"
+	"Project/controllers/ReadAccount"
 	"Project/controllers/login"
 	"Project/controllers/update"
 	"Project/entities"
@@ -48,6 +49,7 @@ func main() {
 		}
 	case 3:
 		{
+			ReadAccount.ReadAccount(db)
 		}
 	case 4:
 		{
