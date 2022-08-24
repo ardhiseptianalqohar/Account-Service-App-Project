@@ -14,17 +14,19 @@ func AddAccount(db *sql.DB) {
 	fmt.Scanln(&daftar.Address)
 	fmt.Println("Gender:")
 	fmt.Scanln(&daftar.Gender)
+	fmt.Println("Status:")
+	fmt.Scanln(&daftar.Status)
 	fmt.Println("Nomor:")
 	fmt.Scanln(&daftar.Nomor)
 	fmt.Println("Password:")
 	fmt.Scanln(&daftar.Password)
 
-	var query = "Insert into Profile (Name, Address, Gender, Nomor, Password) values (?, ?, ?, ?, ?)"
+	var query = "Insert into Profile (Name, Address, Gender, Status, Nomor, Password) values (?, ?, ?, ?, ?, ?)"
 	statement, errPrepare := db.Prepare(query)
 	if errPrepare != nil {
 		fmt.Println("error prepare insert", errPrepare.Error())
 	}
-	result, errExec := statement.Exec(daftar.Name, daftar.Address, daftar.Gender, daftar.Nomor, daftar.Password)
+	result, errExec := statement.Exec(daftar.Name, daftar.Address, daftar.Gender, daftar.Status, daftar.Nomor, daftar.Password)
 	if errExec != nil {
 		fmt.Println("error exec insert", errExec.Error())
 	} else {
