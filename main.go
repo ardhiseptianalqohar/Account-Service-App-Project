@@ -2,6 +2,8 @@ package main
 
 import (
 	"Project/config"
+	"Project/controllers/login"
+	"Project/entities"
 	"Project/controllers/Profile"
 	"fmt"
 )
@@ -24,6 +26,22 @@ func main() {
 		}
 	case 2:
 		{
+			in := entities.Profile{}
+			fmt.Println("Silahkan Masukkan Nomor Telepon Anda :")
+			fmt.Scanln(&in.Nomor)
+			fmt.Println("Silahkan Masukkan Password Anda :")
+			fmt.Scanln(&in.Password)
+
+			row, err := login.LoginUser(db, in)
+			if err != nil {
+				fmt.Println("Gagal Login", err)
+			}
+
+			fmt.Println("Selamat Datang", row.Name,
+				"\n\nSaldo yang Anda Miliki adalah", row.Saldo,
+				"\nAlamat saat ini", row.Address,
+				"\nStatus Saat ini", row.Status)
+
 		}
 	case 3:
 		{
