@@ -3,19 +3,22 @@ package login
 import (
 	"Project/entities"
 	"database/sql"
-	"fmt"
+	// "fmt"
 )
 
 func LoginUser(db *sql.DB, profile entities.Profile) (entities.Profile, error) {
 	statm, err := db.Prepare("select name, address, gender, saldo, status from profile where nomor = ? and password = ?")
 	if err != nil {
-		fmt.Println("Statment Error", err)
+		// fmt.Println("Statment Error", err)
+		return entities.Profile{}, err
 	}
 
 	var row entities.Profile
 	errs := statm.QueryRow(profile.Nomor, profile.Password).Scan(&row.Name, &row.Address, &row.Gender, &row.Saldo, &row.Status)
 	if errs != nil {
-		fmt.Println("Error", errs)
+		// fmt.Println("Error", errs)
+		return entities.Profile{}, errs
+
 	}
 
 	return row, nil
