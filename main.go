@@ -4,6 +4,8 @@ import (
 	"Project/config"
 	profile "Project/controllers/Profile"
 	"Project/controllers/login"
+	"Project/controllers/search"
+	"Project/controllers/topup"
 	"Project/controllers/update"
 	"Project/entities"
 	"bufio"
@@ -137,6 +139,19 @@ func main() {
 		}
 	case 6:
 		{
+			tambah := entities.Profile{}
+			var jumlah int
+			fmt.Println("Masukkan jumlah Top up :")
+			fmt.Scanln(&jumlah)
+			fmt.Println("Masukkan Nomor Anda :")
+			fmt.Scanln(&tambah.Nomor)
+
+			mes, err := topup.TopUpAcc(db, tambah, jumlah)
+			if err != nil {
+				fmt.Println("Gagal Top Up", err)
+			} else {
+				fmt.Println(mes)
+			}
 		}
 	case 7:
 		{
@@ -149,6 +164,18 @@ func main() {
 		}
 	case 10:
 		{
+			cari := entities.Profile{}
+			fmt.Println("Masukkan Nama Anda :")
+			in := bufio.NewReader(os.Stdin)
+			line, _ := in.ReadString('\n')
+			cari.Name = line
+
+			row, err := search.Search(db, cari)
+			if err != nil {
+				fmt.Println("Tidak di temukan", err)
+			}
+
+			fmt.Printf("Name : %sAddress : %s\nGender : %s\nStasus : %s\n", row.Name, row.Address, row.Gender, row.Status)
 		}
 	case 0:
 		{
