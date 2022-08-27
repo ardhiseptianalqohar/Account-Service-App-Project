@@ -6,6 +6,22 @@ import (
 	"fmt"
 )
 
+func TopUp(db *sql.DB) {
+	tambah := entities.Profile{}
+	var jumlah int
+	fmt.Println("Masukkan jumlah Top up :")
+	fmt.Scanln(&jumlah)
+	fmt.Println("Masukkan Nomor Anda :")
+	fmt.Scanln(&tambah.Nomor)
+
+	mes, err := TopUpAcc(db, tambah, jumlah)
+	if err != nil {
+		fmt.Println("Gagal Top Up", err)
+	} else {
+		fmt.Println(mes)
+	}
+}
+
 func TopUpAcc(db *sql.DB, top entities.Profile, topup int) (string, error) {
 	// mencari id
 	statid, erra := db.Prepare("select id, saldo from profile where nomor = ?")
