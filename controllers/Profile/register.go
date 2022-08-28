@@ -7,6 +7,11 @@ import (
 )
 
 func AddAccount(db *sql.DB) {
+
+	fmt.Println("======================")
+	fmt.Println("FITUR REGISTRASI AKUN")
+	fmt.Println("======================")
+
 	daftar := entities.Profile{}
 	fmt.Println("Name:")
 	fmt.Scanln(&daftar.Name)
@@ -21,18 +26,22 @@ func AddAccount(db *sql.DB) {
 	fmt.Println("Password:")
 	fmt.Scanln(&daftar.Password)
 
-	var query = "Insert into Profile (Name, Address, Gender, Status, Nomor, Password) values (?, ?, ?, ?, ?, ?)"
+	var query = "Insert into Profile (Name, Address, Gender, Saldo, Status, Nomor, Password) values (?, ?, ?, ?, ?, ?, ?)"
 	statement, errPrepare := db.Prepare(query)
 	if errPrepare != nil {
 		fmt.Println("error prepare insert", errPrepare.Error())
 	}
-	result, errExec := statement.Exec(daftar.Name, daftar.Address, daftar.Gender, daftar.Status, daftar.Nomor, daftar.Password)
+	result, errExec := statement.Exec(daftar.Name, daftar.Address, daftar.Gender, 0, daftar.Status, daftar.Nomor, daftar.Password)
 	if errExec != nil {
 		fmt.Println("error exec insert", errExec.Error())
 	} else {
 		row, _ := result.RowsAffected()
 		if row > 0 {
-			fmt.Println("Succes Insert Data")
+			fmt.Println("==========================================")
+			fmt.Println("ANDA SUKSES MELAKUKAN PENDAFTARAN")
+			fmt.Println("SELAMAT MENIKMATI FITUR DAN LAYANAN KAMI")
+			fmt.Println("==========================================")
+
 		} else {
 			fmt.Println("gagal insert")
 		}
