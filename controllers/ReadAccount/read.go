@@ -7,6 +7,11 @@ import (
 )
 
 func ReadAccount(db *sql.DB) {
+
+	fmt.Println("===================")
+	fmt.Println("FITUR MELIHAT AKUN")
+	fmt.Println("===================")
+
 	results, errselect := db.Query("select Id, Name, Address, Gender, Status, Nomor, Password from Profile")
 	if errselect != nil {
 		fmt.Println("error select", errselect.Error())
