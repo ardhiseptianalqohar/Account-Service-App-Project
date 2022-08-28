@@ -2,13 +2,14 @@ package main
 
 import (
 	"Project/config"
-	profile "Project/controllers/Profile"
+	"Project/controllers/Profile"
 	"Project/controllers/ReadAccount"
 	"Project/controllers/deleteaccount"
 	"Project/controllers/login"
 	"Project/controllers/search"
 	"Project/controllers/topup"
 	"Project/controllers/topuphistory"
+	"Project/controllers/transfer"
 	"Project/controllers/update"
 
 	//"database/sql"
@@ -61,6 +62,7 @@ func main() {
 						}
 					case 7:
 						{
+							transfer.Transfer(db)
 						}
 					case 8:
 						{
