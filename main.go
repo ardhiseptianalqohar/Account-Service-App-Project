@@ -2,13 +2,10 @@ package main
 
 import (
 	"Project/config"
-	profile "Project/controllers/Profile"
+	"Project/controllers/Profile"
 	"Project/controllers/ReadAccount"
 	"Project/controllers/deleteaccount"
 	"Project/controllers/login"
-	"Project/controllers/search"
-	"Project/controllers/topup"
-	"Project/controllers/topuphistory"
 	"Project/controllers/search"
 	"Project/controllers/topup"
 	"Project/controllers/topuphistory"
